@@ -33,8 +33,7 @@ public class Labyrinthe {
         if (lab.length() == 0) {
             throw new FileFormatException();
         }
-        
-        
+
         this.tailleX = laby.nextInt();
         this.tailleY = laby.nextInt();
         this.departX = laby.nextInt();
@@ -60,7 +59,7 @@ public class Labyrinthe {
     public void move(int x, int y) throws ImpossibleMoveException {
         if ((x >= tailleX) || (x < 0) || (y >= tailleY) || (y < 0)) {
             throw new ImpossibleMoveException("Cette case n'existe pas");
-            
+
         } else if (labyrinthe[x][y].canMoveToCase()) {
             this.posX = x;
             this.posY = y;
@@ -69,5 +68,30 @@ public class Labyrinthe {
             throw new ImpossibleMoveException("Un mur est présent sur cette case !");
         }
     }
-}
 
+    public void automove(int x, int y) {
+        int nextX = this.posX;
+        int nextY = this.posY;
+
+        do {
+
+            int test = (int) (Math.random() * 4);
+            switch (test) {
+                case 0:
+                    nextX++;
+                    break;
+                case 1:
+                    nextX--;
+                    break;
+                case 2:
+                    nextY++;
+                    break;
+                case 3:
+                    nextY--;
+                    break;
+
+            }
+        } while ((nextX >= tailleX) || (nextX < 0) || (nextY >= tailleY) || (nextY < 0) && !(labyrinthe[nextX][nextY].canMoveToCase()));
+
+    }
+}
