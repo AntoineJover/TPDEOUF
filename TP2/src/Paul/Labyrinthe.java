@@ -19,7 +19,7 @@ public class Labyrinthe {
     public int departX, departY;
     public int arriveeX, arriveeY;
     private int posX, posY;
-    CaseImplementee labyrinthe[][];
+    CaseImplementee[][] labyr;
 
     public void InitFromFile(File lab) throws FileFormatException {
 
@@ -42,14 +42,14 @@ public class Labyrinthe {
         this.arriveeY = laby.nextInt();
         this.posX = this.departX;
         this.posY = this.departY;
-        this.labyrinthe = new CaseImplementee[this.tailleY][this.tailleX];
+        this.labyr = new CaseImplementee[this.tailleY][this.tailleX];
         String ligne = laby.nextLine();
         for (int i = 0; i < this.tailleY; i++) {
             for (int j = 0; j < this.tailleX; j++) {
                 if (ligne.charAt(j) == 'X') {
-                    labyrinthe[i][j] = new CaseMur(i, j);
+                    labyr[i][j] = new CaseMur(i, j);
                 } else {
-                    labyrinthe[i][j] = new CaseTrou(i, j);
+                    labyr[i][j] = new CaseTrou(i, j);
                 }
             }
             ligne = laby.nextLine();
@@ -60,7 +60,7 @@ public class Labyrinthe {
         if ((x >= tailleX) || (x < 0) || (y >= tailleY) || (y < 0)) {
             throw new ImpossibleMoveException("Cette case n'existe pas");
 
-        } else if (labyrinthe[x][y].canMoveToCase()) {
+        } else if (labyr[x][y].canMoveToCase()) {
             this.posX = x;
             this.posY = y;
 
@@ -69,7 +69,7 @@ public class Labyrinthe {
         }
     }
 
-    public void automove(int x, int y) {
+    public void automove() {
         int nextX = this.posX;
         int nextY = this.posY;
 
@@ -91,7 +91,7 @@ public class Labyrinthe {
                     break;
 
             }
-        } while ((nextX >= tailleX) || (nextX < 0) || (nextY >= tailleY) || (nextY < 0) && !(labyrinthe[nextX][nextY].canMoveToCase()));
+        } while ((nextX >= tailleX) || (nextX < 0) || (nextY >= tailleY) || (nextY < 0) && !(labyr[nextX][nextY].canMoveToCase()));
 
     }
     
