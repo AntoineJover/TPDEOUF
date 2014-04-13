@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -6,7 +7,7 @@ package Jak;
 
 /**
  *
- * @author 
+ * * @author Ashvin SIlvestro And Antoine Jover
  */
 public class CaseMur extends CaseImplementee {
     
@@ -15,3 +16,4 @@ public class CaseMur extends CaseImplementee {
         vasy=false;
     }
 }
+

@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,12 +7,13 @@
  */
 package Paul;
 
+import Jak.*;
 import java.util.*;
 import java.io.*;
 
 /**
  *
- * @author Kreax
+  * @author Ashvin SIlvestro And Antoine Jover
  */
 public class Labyrinthe {
 
@@ -18,28 +21,53 @@ public class Labyrinthe {
     public int departX, departY;
     public int arriveeX, arriveeY;
     private int posX, posY;
+    CaseImplementee labyrinthe[][];
 
-    // test de ouf
     public void InitFromFile(File lab) throws FileFormatException {
-        Scanner laby = new Scanner(lab);
-        String parametre = new String();
-        parametre = laby.nextLine();
+        
+    Scanner laby;
+    
+        try {
+            laby = new Scanner(lab);
+        } catch (FileNotFoundException ex) {
+            throw new FileFormatException("Le fichier" + lab.getName() + " n'existe pas");
+        }
+         if(lab.length() == 0)
+            throw new FileFormatException("fichier vide");
+        try{
 
-// test
-    }
+       
 
-    public void move(int x, int y) throws ImpossibleMoveException {
-        if ((x >= tailleX) || (x < 0) || (y >= tailleY) || (y < 0)) {
-            throw new ImpossibleMoveException("Cette case n'existe pas");
+        this.tailleX = laby.nextInt(); // la premiere ligne sert a initialiser les attributs du labyrinthe
+        this.tailleY = laby.nextInt();
+        this.departX = laby.nextInt();
+        this.departY = laby.nextInt();
+        this.arriveeX = laby.nextInt();
+        this.arriveeY = laby.nextInt();
 
-        } else if (labyrinthe[x][y].canMoveToCase()) {
+        this.posX = this.departX;
+        this.posY = this.departY;
 
-            this.posX = x;
-            this.posY = y;
+        this.labyrinthe = new CaseImplementee[this.tailleY][this.tailleX]; // on crée un tableau de la taille du terrain
 
-        } else {
+        String ligne = laby.nextLine();
 
-            throw new ImpossibleMoveException("Un mur est présent sur cette case !");
+        for (int i = 0; i < this.tailleY; i++) {
+            for (int j = 0; j < this.tailleX; j++) {
+                if (ligne.charAt(j) == 'X') {
+                    labyrinthe[i][j] = new CaseMur(i, j);
+                } else {
+                    labyrinthe[i][j] = new CaseTrou(i, j);
+                }
+            }
+            ligne = laby.nextLine();
         }
     }
+    }
+    
+    catch(FileFormatException er){
+            
+            if (er instanceof FileFormatException ) throw er;
+             else throw new FileFormatException(); 
 }
+

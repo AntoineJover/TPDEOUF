@@ -6,7 +6,7 @@ package Jak;
 
 /**
  *
- * @author jover
+ *  * @author Ashvin SIlvestro And Antoine Jover
  */
 public interface Case {
     public int getPositionX();

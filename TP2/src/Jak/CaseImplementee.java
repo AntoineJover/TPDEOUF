@@ -6,7 +6,7 @@ package Jak;
 
 /**
  *
- * @author jover
+ *  * @author Ashvin SIlvestro And Antoine Jover
  */
 public class CaseImplementee implements Case {
 
