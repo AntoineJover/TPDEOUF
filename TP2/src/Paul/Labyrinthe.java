@@ -56,9 +56,7 @@ public class Labyrinthe {
             ligne = laby.nextLine();
         }
     }
-<<<<<<< HEAD
- 
-=======
->>>>>>> 94089acdbbd14194ed7bc718fe26382629867711
+
+    
 }
 
