@@ -60,7 +60,7 @@ public class Labyrinthe {
         if ((x >= tailleX) || (x < 0) || (y >= tailleY) || (y < 0)) {
             throw new ImpossibleMoveException("Cette case n'existe pas");
 
-        } else if (labyr[x][y].canMoveToCase()) {
+        } else if (labyr[x][y].canMoveToCase()&&((x==posX+1)||(x==posX-1))&& ((y==posY+1)||(y==posY-1))) {
             this.posX = x;
             this.posY = y;
 
@@ -73,11 +73,14 @@ public class Labyrinthe {
      * Méthode qui génère aléatoirement le déplacement du joueur
      */
     public void automove() {
-        int nextX = this.posX;
-        int nextY = this.posY;
+        int nextX;
+        int nextY;
 
         do {
-
+            
+            nextY = this.posY;
+            nextX = this.posX;
+                    
             int test = (int) (Math.random() * 4);
             switch (test) {
                 case 0:
