@@ -1,5 +1,3 @@
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,7 +11,7 @@ import java.io.*;
 
 /**
  *
-  * @author Ashvin SIlvestro And Antoine Jover
+ * @author Ashvin SIlvestro And Antoine Jover
  */
 public class Labyrinthe {
 
@@ -24,50 +22,51 @@ public class Labyrinthe {
     CaseImplementee labyrinthe[][];
 
     public void InitFromFile(File lab) throws FileFormatException {
-        
-    Scanner laby;
-    
+
+        Scanner laby;
+
         try {
             laby = new Scanner(lab);
         } catch (FileNotFoundException ex) {
             throw new FileFormatException("Le fichier" + lab.getName() + " n'existe pas");
         }
-         if(lab.length() == 0)
+        if (lab.length() == 0) {
             throw new FileFormatException("fichier vide");
-        try{
+        }
+        try {
 
-       
+            this.tailleX = laby.nextInt(); // la premiere ligne sert a initialiser les attributs du labyrinthe
+            this.tailleY = laby.nextInt();
+            this.departX = laby.nextInt();
+            this.departY = laby.nextInt();
+            this.arriveeX = laby.nextInt();
+            this.arriveeY = laby.nextInt();
 
-        this.tailleX = laby.nextInt(); // la premiere ligne sert a initialiser les attributs du labyrinthe
-        this.tailleY = laby.nextInt();
-        this.departX = laby.nextInt();
-        this.departY = laby.nextInt();
-        this.arriveeX = laby.nextInt();
-        this.arriveeY = laby.nextInt();
+            this.posX = this.departX;
+            this.posY = this.departY;
 
-        this.posX = this.departX;
-        this.posY = this.departY;
+            this.labyrinthe = new CaseImplementee[this.tailleY][this.tailleX]; // on crée un tableau de la taille du terrain
 
-        this.labyrinthe = new CaseImplementee[this.tailleY][this.tailleX]; // on crée un tableau de la taille du terrain
+            String ligne = laby.nextLine();
 
-        String ligne = laby.nextLine();
-
-        for (int i = 0; i < this.tailleY; i++) {
-            for (int j = 0; j < this.tailleX; j++) {
-                if (ligne.charAt(j) == 'X') {
-                    labyrinthe[i][j] = new CaseMur(i, j);
-                } else {
-                    labyrinthe[i][j] = new CaseTrou(i, j);
+            for (int i = 0; i < this.tailleY; i++) {
+                for (int j = 0; j < this.tailleX; j++) {
+                    if (ligne.charAt(j) == 'X') {
+                        labyrinthe[i][j] = new CaseMur(i, j);
+                    } else {
+                        labyrinthe[i][j] = new CaseTrou(i, j);
+                    }
                 }
+                ligne = laby.nextLine();
             }
-            ligne = laby.nextLine();
+        } catch (FileFormatException er) {
+
+            if (er instanceof FileFormatException) {
+                throw er;
+            } else {
+                throw new FileFormatException();
+            }
         }
     }
-    }
-    
-    catch(FileFormatException er){
-            
-            if (er instanceof FileFormatException ) throw er;
-             else throw new FileFormatException(); 
-}
 
+}
