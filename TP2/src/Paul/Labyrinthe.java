@@ -33,41 +33,32 @@ public class Labyrinthe {
         if (lab.length() == 0) {
             throw new FileFormatException("fichier vide");
         }
-        try {
-
-            this.tailleX = laby.nextInt(); // la premiere ligne sert a initialiser les attributs du labyrinthe
-            this.tailleY = laby.nextInt();
-            this.departX = laby.nextInt();
-            this.departY = laby.nextInt();
-            this.arriveeX = laby.nextInt();
-            this.arriveeY = laby.nextInt();
-
-            this.posX = this.departX;
-            this.posY = this.departY;
-
-            this.labyrinthe = new CaseImplementee[this.tailleY][this.tailleX]; // on crée un tableau de la taille du terrain
-
-            String ligne = laby.nextLine();
-
-            for (int i = 0; i < this.tailleY; i++) {
-                for (int j = 0; j < this.tailleX; j++) {
-                    if (ligne.charAt(j) == 'X') {
-                        labyrinthe[i][j] = new CaseMur(i, j);
-                    } else {
-                        labyrinthe[i][j] = new CaseTrou(i, j);
-                    }
+        
+        
+        this.tailleX = laby.nextInt();
+        this.tailleY = laby.nextInt();
+        this.departX = laby.nextInt();
+        this.departY = laby.nextInt();
+        this.arriveeX = laby.nextInt();
+        this.arriveeY = laby.nextInt();
+        this.posX = this.departX;
+        this.posY = this.departY;
+        this.labyrinthe = new CaseImplementee[this.tailleY][this.tailleX];
+        String ligne = laby.nextLine();
+        for (int i = 0; i < this.tailleY; i++) {
+            for (int j = 0; j < this.tailleX; j++) {
+                if (ligne.charAt(j) == 'X') {
+                    labyrinthe[i][j] = new CaseMur(i, j);
+                } else {
+                    labyrinthe[i][j] = new CaseTrou(i, j);
                 }
-                ligne = laby.nextLine();
             }
-        } catch (FileFormatException er) {
-
-            if (er instanceof FileFormatException) {
-                throw er;
-            } else {
-                throw new FileFormatException();
-            }
+            ligne = laby.nextLine();
         }
     }
+<<<<<<< HEAD
  
+=======
+>>>>>>> 94089acdbbd14194ed7bc718fe26382629867711
 }
 
