@@ -11,7 +11,7 @@ import java.io.*;
 
 /**
  *
- * @author Kreax
+ * @author Ashvin SIlvestro And Antoine Jover
  */
 public class Labyrinthe {
 
@@ -22,8 +22,19 @@ public class Labyrinthe {
     CaseImplementee labyrinthe[][];
 
     public void InitFromFile(File lab) throws FileFormatException {
+        
+    Scanner laby;
+    
+        try {
+            laby = new Scanner(lab);
+        } catch (FileNotFoundException ex) {
+            throw new FileFormatException("Le fichier" + lab.getName() + " n'existe pas");
+        }
+         if(lab.length() == 0)
+            throw new FileFormatException("fichier vide");
+        try{
 
-        Scanner laby = new Scanner(lab);
+       
 
         this.tailleX = laby.nextInt(); // la premiere ligne sert a initialiser les attributs du labyrinthe
         this.tailleY = laby.nextInt();
@@ -50,5 +61,9 @@ public class Labyrinthe {
             ligne = laby.nextLine();
         }
     }
-
+    }
+    catch(FileFormatException er){
+            
+            if (er instanceof FileFormatException ) throw er;
+             else throw new FileFormatException(); 
 }
