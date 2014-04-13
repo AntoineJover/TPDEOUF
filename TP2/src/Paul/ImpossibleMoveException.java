@@ -11,6 +11,8 @@ package Paul;
  */
 public class ImpossibleMoveException extends Exception {
 
+    /** Méthode qui signale les erreurs de déplacement
+     * @param exception */
     public ImpossibleMoveException(String exception) {
         System.out.println(exception);
     }
