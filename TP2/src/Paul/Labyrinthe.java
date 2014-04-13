@@ -21,6 +21,11 @@ public class Labyrinthe {
     private int posX, posY;
     CaseImplementee[][] labyr;
 
+    /**
+     * Initialise le labyrinthe à partir d'un fichier
+     * @param lab
+     * @throws Paul.FileFormatException
+     */
     public void InitFromFile(File lab) throws FileFormatException {
 
         Scanner laby;
@@ -56,11 +61,18 @@ public class Labyrinthe {
         }
     }
 
+    /**
+     * Vérifie le déplacement souhaité par le joueur et l'effectue
+     *
+     * @param x
+     * @param y
+     * @throws Paul.ImpossibleMoveException
+     */
     public void move(int x, int y) throws ImpossibleMoveException {
         if ((x >= tailleX) || (x < 0) || (y >= tailleY) || (y < 0)) {
             throw new ImpossibleMoveException("Cette case n'existe pas");
 
-        } else if (labyr[x][y].canMoveToCase()&&((x==posX+1)||(x==posX-1))&& ((y==posY+1)||(y==posY-1))) {
+        } else if (labyr[x][y].canMoveToCase() && ((x == posX + 1) || (x == posX - 1)) && ((y == posY + 1) || (y == posY - 1))) {
             this.posX = x;
             this.posY = y;
 
@@ -77,10 +89,10 @@ public class Labyrinthe {
         int nextY;
 
         do {
-            
+
             nextY = this.posY;
             nextX = this.posX;
-                    
+
             int test = (int) (Math.random() * 4);
             switch (test) {
                 case 0:
@@ -121,7 +133,7 @@ public class Labyrinthe {
 
     /**
      *
-     * affiche le labyrinthe
+     * Affichage le labyrinthe
      */
     public void afficher() {
 
