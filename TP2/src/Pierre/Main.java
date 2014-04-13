@@ -16,15 +16,12 @@ import Jak.*;
  */
 public class Main {
 
-    public static void main(String[] args) throws FileFormatException, ImpossibleMoveException {
+    public static void main(String[] args) throws FileFormatException, ImpossibleMoveException, InterruptedException {
         boolean jeu = true;
         String clav;
         int nextX;
         int nextY;
-        
-        
-        
-        
+
         System.out.println("Bienvenue dans le jeu du labyrynthe ! taper le nom du niveau a charger !");
         Scanner ent = new Scanner(System.in);
 
@@ -43,27 +40,25 @@ public class Main {
             System.out.println("Taper a pour lancer le jeu an auto, et s pour jouer");
             clav = ent.next();
         }
-
+        laby.afficher();
         while (jeu) {
-            
-            if ("a".equals(clav)) 
-            {
+
+            if ("a".equals(clav)) {
                 laby.automove();
-            } 
-            else 
-            {
+                Thread.sleep(500);
+            } else {
                 System.out.println("taper la position X voulue");
                 nextX = Integer.parseInt(ent.next());
                 System.out.println("taper la position Y voulue");
                 nextY = Integer.parseInt(ent.next());
                 laby.move(nextY, nextY);
             }
-            if(laby.getCurrentPositionX() == laby.arriveeX && laby.getCurrentPositionX() == laby.arriveeX)
-            {
+            if (laby.getCurrentPositionX() == laby.arriveeX && laby.getCurrentPositionX() == laby.arriveeX) {
                 jeu = false;
             }
+            laby.afficher();
         }
         System.out.println("jeu terminé.");
-        
+
     }
 }

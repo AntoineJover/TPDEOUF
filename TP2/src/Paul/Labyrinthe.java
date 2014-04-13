@@ -63,7 +63,6 @@ public class Labyrinthe {
         } else if (labyr[x][y].canMoveToCase()) {
             this.posX = x;
             this.posY = y;
-            afficher(labyr);
 
         } else {
             throw new ImpossibleMoveException("Un mur est présent sur cette case !");
@@ -93,7 +92,7 @@ public class Labyrinthe {
                 case 3:
                     nextY--;
                     break;
-                    afficher(labyr);
+
             }
         } while ((nextX >= tailleX) || (nextX < 0) || (nextY >= tailleY) || (nextY < 0) && !(labyr[nextX][nextY].canMoveToCase()));
 
@@ -119,16 +118,21 @@ public class Labyrinthe {
 
     /**
      *
-     * @param tableau
+     * affiche le labyrinthe
      */
-    public void afficher(CaseImplementee[][] tableau) {
+    public void afficher() {
 
         for (int i = 0; i < this.tailleY; i++) {
             for (int j = 0; j < this.tailleX; j++) {
-                System.out.println(labyr[i][j]);
-
+                if (labyr[i][j].canMoveToCase() == true && i == this.posX && j == this.posY) {
+                    System.out.print("O");
+                } else if (labyr[i][j].canMoveToCase() == true) {
+                    System.out.print(" ");
+                } else {
+                    System.out.print("X");
+                }
             }
-        }
 
+        }
     }
 }

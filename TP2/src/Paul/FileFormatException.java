@@ -11,7 +11,7 @@ public class FileFormatException extends Exception {
      */
 
     public FileFormatException() {
-        System.out.println("Erreur dans le format ou le nom du fichier");
+        System.out.println("Erreur de format/nom du fichier");
     }
 
 }
