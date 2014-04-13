@@ -6,7 +6,7 @@ package Jak;
 
 /**
  *
- * @author jover
+ * @author 
  */
 public class CaseMur extends CaseImplementee {
     
