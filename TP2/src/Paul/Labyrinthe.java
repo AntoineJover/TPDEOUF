@@ -11,7 +11,7 @@ import java.io.*;
 
 /**
  *
- 
+  * @author Ashvin SIlvestro And Antoine Jover
  */
 public class Labyrinthe {
 
