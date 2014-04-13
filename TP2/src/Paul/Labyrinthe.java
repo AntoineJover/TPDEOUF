@@ -94,4 +94,12 @@ public class Labyrinthe {
         } while ((nextX >= tailleX) || (nextX < 0) || (nextY >= tailleY) || (nextY < 0) && !(labyrinthe[nextX][nextY].canMoveToCase()));
 
     }
+    
+    public int getCurrentPositionX(){
+        return this.posX;
+    }
+
+    public int getCurrentPositionY(){
+        return this.posY;
+}
 }
