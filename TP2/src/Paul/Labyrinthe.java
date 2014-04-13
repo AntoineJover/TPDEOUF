@@ -20,7 +20,7 @@ public int departX, departY ;
 public int arriveeX, arriveeY; 
 private int posX, posY ;
 
-    
+    // test de ouf
     
     
     public void InitFromFile(File lab) throws FileFormatException
