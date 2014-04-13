@@ -28,10 +28,10 @@ public class Labyrinthe {
         try {
             laby = new Scanner(lab);
         } catch (FileNotFoundException ex) {
-            throw new FileFormatException("Le fichier" + lab.getName() + " n'existe pas");
+            throw new FileFormatException();
         }
         if (lab.length() == 0) {
-            throw new FileFormatException("fichier vide");
+            throw new FileFormatException();
         }
         
         
